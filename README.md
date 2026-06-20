@@ -2,11 +2,15 @@
 
 MarketBar is a native macOS menu bar app that lets you monitor Polymarket and Kalshi prediction markets passively. Paste a market or event URL, and MarketBar will display a compact, real-time probability summary directly in your status bar.
 
+## Download
+
+You can download the pre-compiled, signed application from the **[Releases](https://github.com/willadamskeane/MarketBar/releases)** page.
+
 ---
 
 ## Features
 
-- **Native macOS App**: Built with Swift 6 and SwiftUI, running efficiently in the background.
+- **Native macOS App (Universal Binary)**: Built with Swift 6 and SwiftUI, compiled natively for both Apple Silicon (ARM64) and Intel (x86_64) architectures.
 - **Custom Interactive Dropdown**: Styled with a native floating popover including outcome progress bars and cumulative timelines.
 - **Derived Cumulative Date Engine**: Automatically parses date range buckets (e.g. `"June 22–June 28"`, `"Not released by June 28"`) and derives the probability of a resolution by specific deadlines.
 - **Multiple Summary Modes**: Choose how each watch item represents its status in the menu bar:
