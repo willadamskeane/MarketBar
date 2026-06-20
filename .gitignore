@@ -3,3 +3,4 @@ MarketBar.app/
 *.o
 swift-package
 .DS_Store
+*.zip
