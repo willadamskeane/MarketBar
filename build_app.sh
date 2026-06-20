@@ -8,13 +8,25 @@ RESOURCES_DIR="$APP_DIR/Contents/Resources"
 mkdir -p "$MACOS_DIR"
 mkdir -p "$RESOURCES_DIR"
 
-echo "🔨 Compiling Swift source files..."
-swiftc -sdk $(xcrun --show-sdk-path) -O \
+echo "🔨 Compiling Swift source files for Apple Silicon (arm64)..."
+swiftc -sdk $(xcrun --show-sdk-path) -target arm64-apple-macos14.0 -O \
     Sources/MarketBar/Models/*.swift \
     Sources/MarketBar/Services/*.swift \
     Sources/MarketBar/Views/*.swift \
     Sources/MarketBar/App/*.swift \
-    -o "$MACOS_DIR/MarketBar"
+    -o "$MACOS_DIR/MarketBar_arm64"
+
+echo "🔨 Compiling Swift source files for Intel (x86_64)..."
+swiftc -sdk $(xcrun --show-sdk-path) -target x86_64-apple-macos14.0 -O \
+    Sources/MarketBar/Models/*.swift \
+    Sources/MarketBar/Services/*.swift \
+    Sources/MarketBar/Views/*.swift \
+    Sources/MarketBar/App/*.swift \
+    -o "$MACOS_DIR/MarketBar_x86_64"
+
+echo "🔗 Creating Universal Binary..."
+lipo -create "$MACOS_DIR/MarketBar_arm64" "$MACOS_DIR/MarketBar_x86_64" -output "$MACOS_DIR/MarketBar"
+rm "$MACOS_DIR/MarketBar_arm64" "$MACOS_DIR/MarketBar_x86_64"
 
 echo "📝 Creating Info.plist..."
 cat << 'EOF' > "$APP_DIR/Contents/Info.plist"
