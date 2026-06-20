@@ -6,6 +6,10 @@ MarketBar is a native macOS menu bar app that lets you monitor Polymarket and Ka
 
 You can download the pre-compiled, signed application from the **[Releases](https://github.com/willadamskeane/MarketBar/releases)** page.
 
+<p align="center">
+  <img src="screenshots/dropdown.png" width="320" alt="MarketBar Dropdown Preview">
+</p>
+
 ---
 
 ## Features
