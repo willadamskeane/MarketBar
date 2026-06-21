@@ -3,7 +3,6 @@ import SwiftUI
 class DropdownViewModel: ObservableObject {
     @Published var activeSheet: DropdownView.ActiveSheet?
     @Published var expandedItems: Set<UUID> = []
-    @Published var contentHeight: CGFloat = 0
 }
 
 public struct DropdownView: View {
@@ -119,17 +118,9 @@ public struct DropdownView: View {
                             }
                         }
                         .padding(12)
-                        .background(
-                            GeometryReader { geo in
-                                Color.clear
-                                    .preference(key: HeightPreferenceKey.self, value: geo.size.height)
-                            }
-                        )
                     }
-                    .onPreferenceChange(HeightPreferenceKey.self) { value in
-                        viewModel.contentHeight = value
-                    }
-                    .frame(height: min(max(viewModel.contentHeight, 60), 450))
+                    .frame(maxHeight: 450)
+                    .fixedSize(horizontal: false, vertical: true)
                     .background(Color(NSColor.controlBackgroundColor))
                 }
                 
@@ -460,12 +451,5 @@ struct WatchItemRow: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"
         return formatter.string(from: date)
-    }
-}
-
-struct HeightPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
     }
 }
