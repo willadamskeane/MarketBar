@@ -129,7 +129,7 @@ public struct DropdownView: View {
                     .onPreferenceChange(HeightPreferenceKey.self) { value in
                         viewModel.contentHeight = value
                     }
-                    .frame(height: viewModel.contentHeight > 0 ? min(viewModel.contentHeight, 450) : nil)
+                    .frame(height: min(max(viewModel.contentHeight, 60), 450))
                     .background(Color(NSColor.controlBackgroundColor))
                 }
                 
