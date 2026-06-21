@@ -287,6 +287,7 @@ struct WatchItemRow: View {
                         .foregroundColor(.secondary)
                         .padding(.top, 3)
                 }
+                .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             
